@@ -69,20 +69,20 @@ Page({
     const { birthInfo } = this.data;
     
     // 构建提示词
-    const prompt = `你是一位专业的占星师，请根据以下信息为用户生成今日运势预测：\n
-出生年月日：${birthInfo.year}年${birthInfo.month}月${birthInfo.day}日\n
-性别：${birthInfo.gender}\n
-请提供以下内容：\n
-1. 今日综合运势评分（1-100分）\n
-2. 今日运势简短描述（100字以内）\n
-3. 事业运势（50字以内）\n
-4. 爱情运势（50字以内）\n
-5. 财运（50字以内）\n
+    const prompt = `你是一位专业的占星师，请根据以下信息为用户生成今日运势预测：
+
+出生年月日：${birthInfo.year}年${birthInfo.month}月${birthInfo.day}日
+性别：${birthInfo.gender}
+请提供以下内容：
+1. 今日综合运势评分（1-100分）
+2. 今日运势简短描述（100字以内）
+3. 事业运势（50字以内）
+4. 爱情运势（50字以内）
+5. 财运（50字以内）
 请直接给出结果，不要有多余的解释。`;
     
-    // 模拟调用 DeepSeek API
-    // 实际项目中，这里应该调用真实的 DeepSeek API
-    this.mockDeepSeekAPI(prompt).then(result => {
+    // 调用真实的 DeepSeek API
+    this.callDeepSeekAPI(prompt).then(result => {
       // 解析 AI 返回的结果
       const fortuneResult = this.parseFortuneResult(result);
       
@@ -112,8 +112,111 @@ Page({
     });
   },
   
-  // 模拟 DeepSeek API 调用
-  // 实际项目中应替换为真实的 API 调用
+  // 调用 DeepSeek API
+  callDeepSeekAPI(prompt) {
+    return new Promise((resolve, reject) => {
+      // DeepSeek API 密钥
+      const apiKey = 'sk-cf13be406f254309a3559012ece4d33e';
+      
+      // DeepSeek API 请求配置
+      wx.request({
+        url: 'https://api.deepseek.com/v1/chat/completions',
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        data: {
+          model: 'deepseek-chat',
+          messages: [
+            {
+              role: 'user',
+              content: prompt
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 800
+        },
+        success: (res) => {
+          if (res.statusCode === 200 && res.data && res.data.choices && res.data.choices.length > 0) {
+            resolve(res.data.choices[0].message.content);
+          } else {
+            console.error('DeepSeek API 返回异常', res);
+            reject(new Error('API 返回数据格式异常'));
+          }
+        },
+        fail: (err) => {
+          console.error('调用 DeepSeek API 失败', err);
+          reject(err);
+        }
+      });
+    });
+  },
+  
+  // 解析 AI 返回的运势结果
+  parseFortuneResult(text) {
+    try {
+      // 尝试提取运势评分（1-100分）
+      const scoreMatch = text.match(/\d+(?=分)/) || text.match(/\b\d{1,3}\b/);
+      const score = scoreMatch ? parseInt(scoreMatch[0]) : 75; // 默认75分
+      
+      // 尝试提取各部分内容
+      let description = '';
+      let career = '';
+      let love = '';
+      let wealth = '';
+      
+      // 提取运势描述
+      const descMatch = text.match(/今日运势(?:简短)?描述[：:](.*?)(?=\d|事业|爱情|财运|$)/s);
+      if (descMatch && descMatch[1]) {
+        description = descMatch[1].trim();
+      } else {
+        // 如果没有明确标记，尝试提取第一段作为描述
+        const firstParagraph = text.split(/\n\s*\n/)[0];
+        if (firstParagraph && !firstParagraph.includes('运势评分')) {
+          description = firstParagraph.replace(/^[\d\.、]+\s*/, '').trim();
+        }
+      }
+      
+      // 提取事业运势
+      const careerMatch = text.match(/事业运势[：:](.*?)(?=\d|爱情|财运|$)/s);
+      if (careerMatch && careerMatch[1]) {
+        career = careerMatch[1].trim();
+      }
+      
+      // 提取爱情运势
+      const loveMatch = text.match(/爱情运势[：:](.*?)(?=\d|事业|财运|$)/s);
+      if (loveMatch && loveMatch[1]) {
+        love = loveMatch[1].trim();
+      }
+      
+      // 提取财运
+      const wealthMatch = text.match(/财运[：:](.*?)(?=\d|事业|爱情|$)/s);
+      if (wealthMatch && wealthMatch[1]) {
+        wealth = wealthMatch[1].trim();
+      }
+      
+      return {
+        score: score,
+        description: description || '今日运势平稳，保持积极心态将有助于应对各种挑战。',
+        career: career || '工作上需保持专注，踏实做事终会得到认可。',
+        love: love || '感情需要更多的经营，一个小小的关怀会带来温暖。',
+        wealth: wealth || '财务状况稳定，避免冲动消费。'
+      };
+    } catch (error) {
+      console.error('解析运势结果失败', error);
+      // 返回默认值
+      return {
+        score: 75,
+        description: '今日运势平稳，保持积极心态将有助于应对各种挑战。',
+        career: '工作上需保持专注，踏实做事终会得到认可。',
+        love: '感情需要更多的经营，一个小小的关怀会带来温暖。',
+        wealth: '财务状况稳定，避免冲动消费。'
+      };
+    }
+  },
+  
+  // 模拟 DeepSeek API 调用（保留作为备用方案）
   mockDeepSeekAPI(prompt) {
     return new Promise((resolve) => {
       // 模拟网络延迟
@@ -165,13 +268,6 @@ Page({
         resolve(result);
       }, 1500);
     });
-  },
-  
-  // 解析 AI 返回的运势结果
-  // 实际项目中，这里需要根据 DeepSeek API 的返回格式进行解析
-  parseFortuneResult(result) {
-    // 这里直接返回模拟数据，实际项目中需要解析 AI 返回的文本
-    return result;
   },
   
   // 重新生成运势
