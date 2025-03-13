@@ -7,21 +7,21 @@
       
       <view class="form-group">
         <view class="form-label">出生年份</view>
-        <picker bindchange="bindYearChange" value="{{years.indexOf(birthYear)}}" range="{{years}}">
+        <picker bindchange="bindYearChange" value="{{yearIndex}}" range="{{years}}">
           <view class="picker-value">{{birthYear}}年</view>
         </picker>
       </view>
       
       <view class="form-group">
         <view class="form-label">出生月份</view>
-        <picker bindchange="bindMonthChange" value="{{months.indexOf(birthMonth)}}" range="{{months}}">
+        <picker bindchange="bindMonthChange" value="{{monthIndex}}" range="{{months}}">
           <view class="picker-value">{{birthMonth}}月</view>
         </picker>
       </view>
       
       <view class="form-group">
         <view class="form-label">出生日期</view>
-        <picker bindchange="bindDayChange" value="{{days.indexOf(birthDay)}}" range="{{days}}">
+        <picker bindchange="bindDayChange" value="{{dayIndex}}" range="{{days}}">
           <view class="picker-value">{{birthDay}}日</view>
         </picker>
       </view>

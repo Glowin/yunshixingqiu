@@ -9,7 +9,10 @@ Page({
     years: [],
     months: [],
     days: [],
-    genders: ['男', '女']
+    genders: ['男', '女'],
+    yearIndex: 0,  // 添加年份索引
+    monthIndex: 0, // 添加月份索引
+    dayIndex: 0    // 添加日期索引
   },
   
   onLoad() {
@@ -57,13 +60,27 @@ Page({
       days.push(i);
     }
     
-    this.setData({ years, months, days });
+    // 计算默认索引值
+    const yearIndex = years.indexOf(this.data.birthYear);
+    const monthIndex = months.indexOf(this.data.birthMonth);
+    const dayIndex = days.indexOf(this.data.birthDay);
+    
+    // 设置数据，包括索引值
+    this.setData({ 
+      years, 
+      months, 
+      days,
+      yearIndex: yearIndex !== -1 ? yearIndex : 0,
+      monthIndex: monthIndex !== -1 ? monthIndex : 0,
+      dayIndex: dayIndex !== -1 ? dayIndex : 0
+    });
   },
   
   // 年份变化处理
   bindYearChange(e) {
     this.setData({
-      birthYear: this.data.years[e.detail.value]
+      birthYear: this.data.years[e.detail.value],
+      yearIndex: e.detail.value
     });
     this.updateDays();
   },
@@ -71,7 +88,8 @@ Page({
   // 月份变化处理
   bindMonthChange(e) {
     this.setData({
-      birthMonth: this.data.months[e.detail.value]
+      birthMonth: this.data.months[e.detail.value],
+      monthIndex: e.detail.value
     });
     this.updateDays();
   },
@@ -79,7 +97,8 @@ Page({
   // 日期变化处理
   bindDayChange(e) {
     this.setData({
-      birthDay: this.data.days[e.detail.value]
+      birthDay: this.data.days[e.detail.value],
+      dayIndex: e.detail.value
     });
   },
   
@@ -118,7 +137,14 @@ Page({
       birthDay = daysInMonth;
     }
     
-    this.setData({ days, birthDay });
+    // 计算新的日期索引
+    const dayIndex = days.indexOf(birthDay);
+    
+    this.setData({ 
+      days, 
+      birthDay,
+      dayIndex: dayIndex !== -1 ? dayIndex : 0
+    });
   },
   
   // 保存用户信息
