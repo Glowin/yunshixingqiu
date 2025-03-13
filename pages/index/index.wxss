@@ -1,0 +1,62 @@
+/**index.wxss**/
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60rpx;
+  margin-bottom: 60rpx;
+}
+
+.logo {
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #6C5CE7;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+}
+
+.star-bg {
+  width: 100%;
+  height: 400rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40rpx 0;
+}
+
+.star {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.action-area {
+  width: 80%;
+  margin: 40rpx 0;
+}
+
+.btn-primary, .btn-secondary {
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+
+.footer {
+  margin-top: 60rpx;
+  padding: 20rpx;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}

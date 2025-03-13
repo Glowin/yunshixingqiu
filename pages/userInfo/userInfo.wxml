@@ -1,0 +1,39 @@
+<!--userInfo.wxml-->
+<view class="page">
+  <view class="container">
+    <view class="card">
+      <view class="title">个人信息</view>
+      <view class="subtitle">请完善您的出生信息，以便我们为您提供更准确的运势预测</view>
+      
+      <view class="form-group">
+        <view class="form-label">出生年份</view>
+        <picker bindchange="bindYearChange" value="{{years.indexOf(birthYear)}}" range="{{years}}">
+          <view class="picker-value">{{birthYear}}年</view>
+        </picker>
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">出生月份</view>
+        <picker bindchange="bindMonthChange" value="{{months.indexOf(birthMonth)}}" range="{{months}}">
+          <view class="picker-value">{{birthMonth}}月</view>
+        </picker>
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">出生日期</view>
+        <picker bindchange="bindDayChange" value="{{days.indexOf(birthDay)}}" range="{{days}}">
+          <view class="picker-value">{{birthDay}}日</view>
+        </picker>
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">性别</view>
+        <picker bindchange="bindGenderChange" value="{{genders.indexOf(gender)}}" range="{{genders}}">
+          <view class="picker-value">{{gender}}</view>
+        </picker>
+      </view>
+      
+      <button class="btn-primary" bindtap="saveUserInfo">保存信息</button>
+    </view>
+  </view>
+</view>

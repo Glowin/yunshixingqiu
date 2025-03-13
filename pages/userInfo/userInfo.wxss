@@ -1,0 +1,23 @@
+/* userInfo.wxss */
+.form-group {
+  margin-bottom: 30rpx;
+  background-color: #fff;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.picker-value {
+  font-size: 32rpx;
+  color: #333;
+  padding: 10rpx 0;
+}
+
+.btn-primary {
+  margin-top: 50rpx;
+}

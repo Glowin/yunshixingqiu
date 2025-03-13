@@ -1,0 +1,131 @@
+/* fortune.wxss */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  width: 100%;
+}
+
+.loading {
+  width: 80rpx;
+  height: 80rpx;
+  border: 6rpx solid #f3f3f3;
+  border-top: 6rpx solid #6C5CE7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.fortune-card {
+  position: relative;
+  padding: 40rpx 30rpx;
+}
+
+.date-info {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20rpx 0 30rpx;
+}
+
+.score {
+  font-size: 80rpx;
+  font-weight: bold;
+  color: #6C5CE7;
+}
+
+.score-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.divider {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 30rpx 0;
+}
+
+.fortune-desc {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.detail-card {
+  margin-top: 30rpx;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.detail-icon {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: white;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.career-icon {
+  background-color: #FF9F43;
+}
+
+.love-icon {
+  background-color: #FF6B6B;
+}
+
+.wealth-icon {
+  background-color: #2ED573;
+}
+
+.detail-content {
+  flex: 1;
+}
+
+.detail-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.detail-text {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.action-buttons {
+  width: 90%;
+  margin: 40rpx auto;
+}

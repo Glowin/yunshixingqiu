@@ -1,0 +1,31 @@
+/* share.wxss */
+.share-card {
+  padding: 30rpx;
+}
+
+.canvas-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30rpx 0;
+  background-color: #f8f9fa;
+  border-radius: 8rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.tips {
+  margin-top: 30rpx;
+  width: 90%;
+}
+
+.tips-text {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}

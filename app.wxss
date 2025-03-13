@@ -1,0 +1,73 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 0;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+}
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.card {
+  width: 90%;
+  margin: 20rpx auto;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary {
+  background-color: #6C5CE7;
+  color: white;
+  border-radius: 50rpx;
+  padding: 20rpx 0;
+  font-weight: bold;
+  margin: 30rpx 0;
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: #6C5CE7;
+  border: 1px solid #6C5CE7;
+  border-radius: 50rpx;
+  padding: 20rpx 0;
+  font-weight: bold;
+  margin: 30rpx 0;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  text-align: center;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-20 {
+  margin-top: 20rpx;
+}
+
+.mb-20 {
+  margin-bottom: 20rpx;
+}

@@ -1,0 +1,24 @@
+<!--share.wxml-->
+<view class="page">
+  <view class="container">
+    <view class="card share-card">
+      <view class="title">运势分享卡片</view>
+      <view class="subtitle">您的专属运势已生成，可保存或分享给好友</view>
+      
+      <!-- 分享图片预览区域 -->
+      <view class="canvas-container">
+        <canvas canvas-id="shareCanvas" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;"></canvas>
+      </view>
+      
+      <!-- 分享操作按钮 -->
+      <view class="action-buttons">
+        <button class="btn-primary" bindtap="saveImage">保存到相册</button>
+        <button class="btn-secondary" open-type="share">分享给好友</button>
+      </view>
+    </view>
+    
+    <view class="tips">
+      <view class="tips-text">保存图片后可分享到朋友圈</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+<!--index.wxml-->
+<view class="page">
+  <view class="container">
+    <view class="header">
+      <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+      <view class="title">运势星球</view>
+      <view class="subtitle">AI智能运势预测，探索你的星座密码</view>
+    </view>
+    
+    <view class="star-bg">
+      <image class="star" animation="{{starAnimation}}" src="/images/star.png" mode="aspectFit"></image>
+    </view>
+    
+    <view class="action-area">
+      <block wx:if="{{!hasUserInfo}}">
+        <button 
+          wx:if="{{canIUseGetUserProfile}}" 
+          class="btn-primary" 
+          bindtap="getUserProfile"
+        >微信一键登录</button>
+        <button 
+          wx:else 
+          class="btn-primary" 
+          bindtap="goToUserInfo"
+        >开始使用</button>
+      </block>
+      
+      <block wx:else>
+        <button class="btn-primary" bindtap="goToFortune">查看今日运势</button>
+        <button class="btn-secondary" bindtap="goToUserInfo">修改个人信息</button>
+      </block>
+    </view>
+    
+    <view class="footer">
+      <view class="footer-text">基于DeepSeek V3 AI模型提供智能运势预测</view>
+    </view>
+  </view>
+</view>
